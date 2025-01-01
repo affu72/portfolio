@@ -2,20 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  :root[data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --accent-primary: #3b82f6;
+    --accent-secondary: #60a5fa;
+    --border-color: #e2e8f0;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root[data-theme="dark"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --accent-primary: #60a5fa;
+    --accent-secondary: #93c5fd;
+    --border-color: #334155;
+  }
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+
+    --header-height-desktop: 90px;
+    --header-height-mobile: 70px;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .code-block {
+    @apply relative py-8 bg-theme-bg-secondary rounded-lg overflow-auto transition-all;
+  }
+
+  .code-block:hover::before {
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-transparent via-accent-primary to-transparent opacity-10;
+  }
+
+  .tech-stack-item {
+    @apply relative overflow-hidden;
+  }
+
+  .tech-stack-item::after {
+    @apply content-[''] absolute bottom-0 left-0 w-full h-0.5 bg-accent-primary transform scale-x-0 origin-right transition-transform duration-300;
+  }
+
+  .tech-stack-item:hover::after {
+    @apply scale-x-100 origin-left;
+  }
+
+  .resource-card-hover {
+    @apply transform transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .category-badge {
+    @apply inline-block px-3 py-1 rounded-full text-sm font-medium;
+  }
+}
+
+@layer utilities {
+  .bg-theme-primary {
+    background-color: var(--bg-primary);
+  }
+
+  .bg-theme-secondary {
+    background-color: var(--bg-secondary);
+  }
+
+  .text-theme-primary {
+    color: var(--text-primary);
+  }
+
+  .text-theme-secondary {
+    color: var(--text-secondary);
+  }
+
+  .border-theme {
+    border-color: var(--border-color);
+  }
+
+  .accent-primary {
+    background-color: var(--accent-primary);
+  }
+
+  .accent-secondary {
+    background-color: var(--accent-secondary);
+  }
+
+  .scroll-reveal {
+    @apply opacity-0 translate-y-4 transition-all duration-700 ease-out;
+  }
+
+  .scroll-reveal.active {
+    @apply opacity-100 translate-y-0;
+  }
 }
