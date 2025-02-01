@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 
 interface Resource {
@@ -37,27 +37,6 @@ const resources: Resource[] = [
 ];
 
 function Resources() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-      }
-    );
-
-    document.querySelectorAll(".scroll-reveal").forEach((element) => {
-      observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
       data-name='resources'
@@ -92,7 +71,7 @@ function Resources() {
                 shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out
                 hover:-translate-y-1 hover:scale-[1.02] cursor-pointer
                 border border-transparent hover:border-accent-primary/20
-                relative overflow-hidden scroll-reveal'
+                relative overflow-hidden'
             >
               <div
                 className='absolute inset-0 bg-gradient-to-r from-accent-primary/5 to-transparent 

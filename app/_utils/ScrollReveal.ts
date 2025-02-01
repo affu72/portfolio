@@ -1,27 +1,32 @@
-const useScrollReveal = () => {
-    try {
-        React.useEffect(() => {
-            const observerCallback = (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            };
+import { useEffect } from "react";
 
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
+export const useScrollReveal = () => {
+  try {
+    useEffect(() => {
+      const observerCallback = (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      };
 
-            const observer = new IntersectionObserver(observerCallback, observerOptions);
-            const elements = document.querySelectorAll('.scroll-reveal');
-            elements.forEach(el => observer.observe(el));
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      };
 
-            return () => observer.disconnect();
-        }, []);
-    } catch (error) {
-        reportError(error);
-    }
+      const observer = new IntersectionObserver(
+        observerCallback,
+        observerOptions
+      );
+      const elements = document.querySelectorAll(".scroll-reveal");
+      elements.forEach((el) => observer.observe(el));
+
+      return () => observer.disconnect();
+    }, []);
+  } catch (error) {
+    reportError(error);
+  }
 };

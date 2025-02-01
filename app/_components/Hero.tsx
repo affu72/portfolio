@@ -2,16 +2,16 @@ import React from "react";
 import Link from "next/link";
 import RevealingContent from "./RevealingContent";
 
-const title = "Building High-Performance Web Experiences";
+const title = "Building <br> High-Performance <br> Web Experiences";
 const description = "Delivering speed, scalability, and seamless design.";
 const primaryCta = {
-  text: "View Projects",
-  href: "/projects",
+  text: "Resume",
+  href: "https://drive.google.com/file/d/1CGQvVo1ckQY_Qgfl1Lw298sZFyqTKvoy/view?usp=drive_link",
   shouldDisable: true,
 };
 const secondaryCta = {
   text: "GitHub Profile",
-  href: "https://github.com/afzal-nomani",
+  href: "https://github.com/affu72",
   shouldDisable: true,
 };
 const techStack = ["React", "Next.js", "TypeScript", "TailwindCSS"];
@@ -27,28 +27,28 @@ function Hero() {
         data-name='hero-content'
         className='container mx-auto px-6 py-6 text-center'
       >
-        <div className='flex flex-col md:flex-col-reverse sm:items-center justify-center '>
-          <div>
+        <div className='flex sm:items-center justify-between flex-col-reverse md:flex-row'>
+          <div className='w-full'>
             <h1
               data-name='hero-title'
-              className='text-5xl md:text-7xl font-bold mb-6 gradient-text font-[var(--font-courgette)]'
+              className='text-4xl mt-4 text-center md:text-start md:text-7xl md:leading-[1.1] font-bold mb-6 gradient-text'
             >
-              {title}
+              {title
+                .replace(/<br>/g, "\n")
+                .split("\n")
+                .map((line, index) => (
+                  <span key={index} className='inline-block'>
+                    {line}
+                  </span>
+                ))}
             </h1>
             <p
               data-name='hero-subtitle'
-              className='text-xl md:text-2xl text-theme-secondary mb-12 typewriter'
+              className='text-xl text-center md:text-start md:text-2xl text-theme-secondary mb-12 typewriter'
             >
               {description}
             </p>
-            <div className='flex justify-center space-x-4 scale-in'>
-              <Link
-                href={primaryCta.href}
-                data-name='cta-button-primary'
-                className='accent-primary text-white px-8 py-3 rounded-lg hover-lift shadow-lg'
-              >
-                {primaryCta.text}
-              </Link>
+            <div className='flex justify-center md:justify-start space-x-4 scale-in'>
               <Link
                 href={secondaryCta.href}
                 target='_blank'
@@ -58,6 +58,14 @@ function Hero() {
               >
                 {secondaryCta.text}
               </Link>
+              <Link
+                href={primaryCta.href}
+                target='_blank'
+                data-name='cta-button-primary'
+                className='accent-primary hover:bg-secondary text-white px-8 py-3 rounded-lg hover-lift shadow-lg'
+              >
+                {primaryCta.text}
+              </Link>
             </div>
           </div>
           <RevealingContent />
@@ -65,10 +73,7 @@ function Hero() {
 
         <div className='mt-6 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-8'>
           {techStack.map((tech) => (
-            <div
-              key={tech}
-              className='tech-stack-item p-4 text-center scroll-reveal'
-            >
+            <div key={tech} className='tech-stack-item p-4 text-center'>
               <p className='font-mono text-theme-secondary'>{tech}</p>
             </div>
           ))}

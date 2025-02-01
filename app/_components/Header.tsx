@@ -19,7 +19,8 @@ function Header() {
           data-name='nav-content'
           className='flex items-center justify-between w-full'
         >
-          <h1
+          <Link
+            href='/'
             data-name='logo'
             className='text-2xl font-bold text-theme-primary slide-in flex items-center gap-2'
           >
@@ -31,50 +32,41 @@ function Header() {
               alt='Follow us on Twitter'
               className='h-[calc(var(--header-height-mobile)-30px)] md:h-[calc(var(--header-height-desktop)-18px)]'
             />
-            {/* <span className='text-accent-primary'>fzal</span> */}
-          </h1>
+          </Link>
           <div className='flex items-center space-x-8'>
             <ul data-name='nav-links' className='hidden md:flex space-x-8'>
               <li>
                 <Link
-                  href='/'
+                  href='/experience'
                   className='text-theme-primary hover:text-accent-primary transition-colors'
                 >
-                  Home
+                  Journey
                 </Link>
               </li>
-              <li>
-                <Link
-                  href='/about'
-                  className='text-theme-primary hover:text-accent-primary transition-colors'
-                >
-                  About
-                </Link>
-              </li>
-              <li>
+              {/* <li>
                 <Link
                   href='/projects'
                   className='text-theme-primary hover:text-accent-primary transition-colors'
                 >
                   Projects
                 </Link>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <Link
                   href='/contact'
                   className='text-theme-primary hover:text-accent-primary transition-colors'
                 >
                   Contact
                 </Link>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <Link
                   href='/resources'
                   className='text-theme-primary hover:text-accent-primary transition-colors'
                 >
                   Resources
                 </Link>
-              </li>
+              </li> */}
             </ul>
             <ThemeToggle />
           </div>

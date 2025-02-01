@@ -52,12 +52,12 @@ function RevealingContent() {
   }, [currentPhraseIndex]);
 
   return (
-    <div className='code-block mb-8 inline-block text-left text-sm md:text-base'>
+    <div className='code-block inline-block text-left text-sm md:text-base w-full max-w-lg'>
       <pre className='text-theme-primary'>
         <code>{`const developer = {
     name: "Afzal Nomani",
     role: "${typedText}",
-    location: "New Delhi",
+    location: "Banglore, India",
     expertise: ["React", "Next.js", "Performance", "UI/UX"]
 };`}</code>
       </pre>
